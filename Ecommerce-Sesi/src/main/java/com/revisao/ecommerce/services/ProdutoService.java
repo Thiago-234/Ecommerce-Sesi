@@ -32,7 +32,8 @@ public class ProdutoService {
         Page<Produto> busca = repo.findAll(pagina);
         return busca.map(x-> new ProdutoDTO(x));
     }
-    
+
+    @Transactional
     public ProdutoDTO insert(ProdutoDTO dto) {
     	Produto entity = new Produto();
     	entity.setNome(dto.getNome());    	
