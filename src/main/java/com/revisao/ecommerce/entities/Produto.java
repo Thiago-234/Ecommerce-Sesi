@@ -99,4 +99,16 @@ public class Produto {
 		return items.stream().map(x -> x.getPedido()).toList();
 	}
 
+	public Set<Categoria> getCategorias() {
+		return categorias;
+	}
+
+	public void setCategorias(Set<Categoria> categorias) {
+		this.categorias = categorias;
+	}
+
+	public void setItems(Set<ItemDoPedido> items) {
+		this.items = items;
+	}
+
 }
