@@ -35,7 +35,7 @@ public class ProdutoDTO {
 		preco = entity.getPreco();
 		imgUrl = entity.getImgUrl();
 		for(Categoria cat : entity.getCategorias()) {
-			categorias.add(new CategoriaDTO());
+			categorias.add(new CategoriaDTO(cat));
 		}
 	}
 
