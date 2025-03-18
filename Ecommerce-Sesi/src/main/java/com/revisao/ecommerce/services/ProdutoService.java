@@ -14,6 +14,8 @@ import com.revisao.ecommerce.entities.Produto;
 import com.revisao.ecommerce.repositories.CategoriaRepository;
 import com.revisao.ecommerce.repositories.ProdutoRepository;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class ProdutoService {
 
@@ -32,7 +34,7 @@ public class ProdutoService {
         Page<Produto> busca = repo.findAll(pagina);
         return busca.map(x-> new ProdutoDTO(x));
     }
-
+    
     @Transactional
     public ProdutoDTO insert(ProdutoDTO dto) {
     	Produto entity = new Produto();
@@ -49,7 +51,5 @@ public class ProdutoService {
     	entity = repo.save(entity);
     	return new ProdutoDTO(entity);
     }
-    
-    
-    
+      
 }
