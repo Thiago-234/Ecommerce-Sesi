@@ -78,5 +78,13 @@ public class Pedido {
 	public List<Produto> getProduto(){
 		return items.stream().map(x ->x.getProduto()).toList();
 	}
+
+	public Usuario getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Usuario cliente) {
+		this.cliente = cliente;
+	}
 	
 }

@@ -6,10 +6,13 @@ import java.util.List;
 import com.revisao.ecommerce.entities.Pedido;
 import com.revisao.ecommerce.entities.Usuario;
 
+import jakarta.persistence.Column;
+
 public class UsuarioDTO {
 	
 	private Long id;
 	private String nome;
+	@Column(unique = true)
 	private String email;
 	private String telefone;
 	private String senha;
@@ -30,7 +33,7 @@ public class UsuarioDTO {
 	
 	public UsuarioDTO(Usuario entity) {
 		id = entity.getId();
-		email = entity.getEmail();
+		nome = entity.getNome();
 		email = entity.getEmail();
 		telefone = entity.getTelefone();
 		senha = entity.getSenha();

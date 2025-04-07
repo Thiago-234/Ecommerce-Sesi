@@ -10,17 +10,25 @@ public class PedidoDTO {
 	private Long id;
 	private Instant momento;
 	private StatusDoPedido status;
-	private UsuarioDTO usuario;
+	private Long clienteid;
 	
-	public PedidoDTO(Pedido ped){
-		id = ped.getId();
+	public PedidoDTO() {
+		
 	}
-
-	public PedidoDTO(Long id, Instant momento, StatusDoPedido status) {
+	
+	public PedidoDTO(Long id, Instant momento, StatusDoPedido status, Long clienteid) {
 		this.id = id;
 		this.momento = momento;
 		this.status = status;
+		this.clienteid = clienteid;
 	}	
+	
+	public PedidoDTO(Pedido ped){
+		id = ped.getId();
+		momento = ped.getMomento();
+		status = ped.getStatus();
+		clienteid = ped.getCliente().getId();	
+	}
 
 	public Long getId() {
 		return id;
@@ -46,12 +54,11 @@ public class PedidoDTO {
 		this.status = status;
 	}
 
-	public UsuarioDTO getUsuario() {
-		return usuario;
+	public Long getClienteid() {
+		return clienteid;
 	}
 
-	public void setUsuario(UsuarioDTO usuario) {
-		this.usuario = usuario;
-	}	
-	
+	public void setClienteid(Long clienteid) {
+		this.clienteid = clienteid;
+	}
 }
