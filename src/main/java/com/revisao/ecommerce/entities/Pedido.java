@@ -29,7 +29,7 @@ public class Pedido {
 	@ManyToOne
 	@JoinColumn(name = "cliente_id")
 	private Usuario cliente;
-	
+
 	@OneToOne(mappedBy = "pedido", cascade = CascadeType.ALL)
 	private Pagamento pagamento;
 
@@ -77,6 +77,14 @@ public class Pedido {
 
 	public List<Produto> getProduto(){
 		return items.stream().map(x ->x.getProduto()).toList();
+	}
+
+	public Usuario getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Usuario cliente) {
+		this.cliente = cliente;
 	}
 	
 }

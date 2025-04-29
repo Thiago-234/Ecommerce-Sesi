@@ -12,6 +12,15 @@ public class ItemDoPedido {
 	private ItemDoPedidoPK id = new ItemDoPedidoPK();
 
 	private Integer quantidade;
+	
+	public ItemDoPedidoPK getId() {
+		return id;
+	}
+
+	public void setId(ItemDoPedidoPK id) {
+		this.id = id;
+	}
+
 	private Double preco;
 
 	public ItemDoPedido() {

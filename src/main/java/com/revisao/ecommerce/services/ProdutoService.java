@@ -14,25 +14,28 @@ import com.revisao.ecommerce.entities.Produto;
 import com.revisao.ecommerce.repositories.CategoriaRepository;
 import com.revisao.ecommerce.repositories.ProdutoRepository;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class ProdutoService {
 
     @Autowired
-    ProdutoRepository repo;
+    ProdutoRepository produtoRepository;
     
     @Autowired
     CategoriaRepository repoCat;
 
     public List<ProdutoDTO> findAll(){
-        List<Produto> lista = repo.findAll();
+        List<Produto> lista = produtoRepository.findAll();
         return lista.stream().map(x-> new ProdutoDTO(x)).toList() ;
     }
 
     public Page<ProdutoDTO> findPagina(Pageable pagina){
-        Page<Produto> busca = repo.findAll(pagina);
+        Page<Produto> busca = produtoRepository.findAll(pagina);
         return busca.map(x-> new ProdutoDTO(x));
     }
     
+    @Transactional
     public ProdutoDTO insert(ProdutoDTO dto) {
     	Produto entity = new Produto();
     	entity.setNome(dto.getNome());    	
@@ -45,10 +48,24 @@ public class ProdutoService {
     		entity.getCategorias().add(cat);
     	}
     	
-    	entity = repo.save(entity);
+    	entity = produtoRepository.save(entity);
     	return new ProdutoDTO(entity);
     }
     
+    public String deletarProduto(Long id) {
+		produtoRepository.deleteById(id);
+		return "Produto deletado!";
+	}
     
-    
+    public Produto atualizarProduto(Long id, Produto atualizado) {
+    	Produto produto = produtoRepository.findById(id).get();   
+		produto.setCategorias(atualizado.getCategorias());
+		produto.setDescricao(atualizado.getDescricao());
+		produto.setImgUrl(atualizado.getImgUrl());
+		produto.setNome(atualizado.getNome());
+		produto.setPreco(atualizado.getPreco());
+		produto.setItems(atualizado.getItems());
+		return produtoRepository.save(produto);
+	}
+      
 }
